@@ -11,13 +11,13 @@ export const Sidebar = () => {
     const routes = [
         {
             icon: Home,
-            href: "companion",
+            href: "/companion",
             label: "Home",
             pro: false,
         },
         {
             icon: Plus,
-            href: "companion/new",
+            href: "/companion/new",
             label: "Create",
             pro: true,
         },
