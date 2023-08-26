@@ -1,3 +1,28 @@
+PausePlayRepeat AI
+
+PausePlayRepeat AI is a platform designed to connect music producers with AI tools that can help in various aspects of music production. Our goal is to empower artists by providing them with resources for lyric generation, music video generation, album artwork generation, sound sample generation, and educational companions for mixing, mastering, synthesis and sound design, music theory, drum programming, FL Studio, Ableton, and Logic.
+
+Features
+
+Lyric Generation: Generate lyrics for your songs using advanced AI algorithms.
+Music Video Generation: Create music videos with the help of AI.
+Album Artwork Generation: Design album covers and artwork using AI tools.
+Sound Sample Generation: Generate sound samples for your tracks.
+Educational Companions: Learn about mixing, mastering, synthesis and sound design, music theory, drum programming, FL Studio, Ableton, and Logic.
+Technologies Used
+
+Next.js
+React
+TypeScript
+Tailwind CSS
+OpenAI
+Replicate
+Hugging Face
+Radix UI
+Shadcn
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
