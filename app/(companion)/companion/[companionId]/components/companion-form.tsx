@@ -4,9 +4,11 @@ import * as z from "zod";
 import { Category, Companion } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { ImageUpload } from "@/components/companion/image-upload";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from "@/components/ui/select";
 
 interface CompanionFormProps {
     initialData: Companion | null;
@@ -86,9 +88,90 @@ export const CompanionForm = ({
                                         value={field.value}
                                     />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField 
+                            name="name"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem className="col-span-2 md:col-span-1">
+                                    <FormLabel>Name</FormLabel>
+                                    <FormControl>
+                                        <Input 
+                                            disabled={isLoading}
+                                            placeholder="Your Music Making Companion"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormDescription className="text-xs">
+                                        This is how your companion will be named.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField 
+                            name="description"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem className="col-span-2 md:col-span-1">
+                                    <FormLabel>Description</FormLabel>
+                                    <FormControl>
+                                        <Input 
+                                            disabled={isLoading}
+                                            placeholder="A description of your Music Making Companion"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormDescription className="text-xs">
+                                        This is how your companion will be described.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField 
+                            name="categoryId"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Category</FormLabel>
+                                    <Select>
+                                        <FormControl>
+                                            <SelectTrigger className="bg-background">
+                                                <SelectValue 
+                                                    defaultValue={field.value}
+                                                    placeholder="Select a category"
+                                                />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {categories.map((category) => (
+                                                <SelectItem
+                                                    key={category.id}
+                                                    value={category.id}
+                                                    onClick={() => field.onChange(category.id)}
+                                                >
+                                                    {category.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormDescription className="text-xs">
+                                        Select a category for your companion.
+                                    </FormDescription>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div>
+                        <div>
+                            <h3>Configuration</h3>
+                        </div>
+                    </div>
                 </form>
             </Form>
         </div>
