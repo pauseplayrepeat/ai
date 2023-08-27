@@ -60,7 +60,7 @@ export const ChatClient = ({
         <div className="flex flex-col h-full p-4 space-y-2">
             <ChatHeader companion={companion} />
             <div>
-                Messages TODO
+                {/* Messages TODO */}
             </div>
             <ChatForm 
                 loading={isLoading}

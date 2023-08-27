@@ -3,7 +3,7 @@
 export const ChatForm = () => {
     return (
         <div>
-            Chat Form!
+            {/* Chat Form! */}
         </div>
     );
 }
