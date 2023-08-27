@@ -34,3 +34,8 @@ model Companion {
   @@index([categoryId])
   @@fulltext([name])
 }
+
+enum Role {
+  user
+  system
+}

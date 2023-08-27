@@ -12,6 +12,9 @@ import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Wand2 } from "lucide-react";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const PREAMBLE = `You are an AI companion for music production! You are designed to enhance music producers creative process and help them achieve the perfect mix. You help professional music producers or music producers just starting out. You provide the tools and insights needed to refine a music production mix and bring musical visions to life. From suggesting EQ adjustments, recommending compression settings, or even helping music producers select the perfect reverb for their track, you are here to assist you every step of the way.`;
 
@@ -70,6 +73,10 @@ export const CompanionForm = ({
     initialData,
     categories
 }: CompanionFormProps) => {
+
+    const router = useRouter();
+    const { toast } = useToast();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: initialData || {
@@ -85,8 +92,29 @@ export const CompanionForm = ({
     const isLoading = form.formState.isLoading;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
+        try {
+            if (initialData) {
+                // Update Companion Functionality
+                await axios.patch(`/api/companion/${initialData.id}`, values);
+            } else {
+                // Create companion functionality
+                await axios.post(`/api/companion`, values);
+            }
+
+            toast({
+                description: "Your companion has been created.",
+            });
+
+            router.refresh();
+            router.push("/companion");
+            
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                description: "Something went wrong.",
+            });
     }
+}
 
     return (
         <div className="h-full p-4 space-y-2 max-w-3xl mx-auto">
@@ -163,40 +191,31 @@ export const CompanionForm = ({
                                 </FormItem>
                             )}
                         />
-                        <FormField 
-                            name="categoryId"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Category</FormLabel>
-                                    <Select>
-                                        <FormControl>
-                                            <SelectTrigger className="bg-background">
-                                                <SelectValue 
-                                                    defaultValue={field.value}
-                                                    placeholder="Select a category"
-                                                />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            {categories.map((category) => (
-                                                <SelectItem
-                                                    key={category.id}
-                                                    value={category.id}
-                                                    onClick={() => field.onChange(category.id)}
-                                                >
-                                                    {category.name}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                    <FormDescription className="text-xs">
-                                        Select a category for your companion.
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category</FormLabel>
+                  <Select disabled={isLoading} onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="bg-background">
+                        <SelectValue defaultValue={field.value} placeholder="Select a category" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>
+                    Select a category for your companion.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
                     </div>
                     <div className="space-y-2 w-full">
                         <div>
@@ -247,7 +266,7 @@ export const CompanionForm = ({
                                         />
                                     </FormControl>
                                     <FormDescription className="text-xs">
-                                        Describe in detail your companion&apos;s behavior.
+                                        Write couple of examples of a human chatting with your AI companion, write expected answers.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
