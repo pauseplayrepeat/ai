@@ -63,7 +63,7 @@ export const ChatClient = ({
                 {/* Messages TODO */}
             </div>
             <ChatForm 
-                loading={isLoading}
+                isLoading={isLoading}
                 input={input}
                 handleInputChange={handleInputChange}
                 onSubmit={onSubmit}
