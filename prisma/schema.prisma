@@ -30,7 +30,7 @@ model Companion {
 
   category   Category  @relation(fields: [categoryId], references: [id])
   categoryId String
-  Message    Message[]
+  messages   Message[]
 
   @@index([categoryId])
   @@fulltext([name])
