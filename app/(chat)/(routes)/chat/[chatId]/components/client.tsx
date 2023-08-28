@@ -1,13 +1,13 @@
 "use client";
 
 import { Companion, Message } from "@prisma/client";
-import { ChatHeader } from "./chat-header";
+import { ChatHeader } from "../../../../../../components/companion/chat/chat-header";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { useCompletion } from "ai/react"
-import { ChatForm } from "./chat-form";
-import { ChatMessages } from "./chat-messages";
-import { ChatMessageProps } from "./chat-message";
+import { ChatForm } from "../../../../../../components/companion/chat/chat-form";
+import { ChatMessages } from "../../../../../../components/companion/chat/chat-messages";
+import { ChatMessageProps } from "../../../../../../components/companion/chat/chat-message";
 
 interface ChatClientProps {
     companion: Companion & {
