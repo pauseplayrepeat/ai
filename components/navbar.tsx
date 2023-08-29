@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react"; 
 import { UserButton } from "@clerk/nextjs";
 import MobileSidebar from "@/components/mobile-sidebar";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
     return (
@@ -9,7 +10,8 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" className="md:hidden">
                 <MobileSidebar />
             </Button> 
-            <div className="flex w-full justify-end">
+            <div className="flex w-full justify-end gap-x-3">
+                <ModeToggle />
                 <UserButton afterSignOutUrl="/"/>
             </div>
         </div>
