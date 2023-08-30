@@ -36,18 +36,22 @@ const MusicPage = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setMusic(undefined);
-  
-      const response = await axios.post('/api/musicgen', values);
-      console.log(response);
-  
-      setMusic(response.data);
+
+      const response = await axios.post('/api/music', values);
+      console.log(response)
+
+      setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      // handle error
+      // if (error?.response?.status === 403) {
+      //   proModal.onOpen();
+      // } else {
+      //   toast.error("Something went wrong.");
+      // }
     } finally {
       router.refresh();
     }
-  };
+  }
 
   return ( 
     <div>
