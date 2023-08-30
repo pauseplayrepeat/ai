@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Heading } from "@/components/heading";
 import { Download, ImageIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { formSchema, } from "./constants";
+import { amountOptions, formSchema, resolutionOptions } from "./constants";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,7 @@ import { BotAvatar } from "@/components/bot-avatar";
 import { Select,  SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+
 
 
 const ImagePage = () => {
@@ -40,16 +41,20 @@ const ImagePage = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             setImages([]);
-            const response = await axios.post("/api/sd", values);
-            setImages(response.data);
+            const response = await axios.post("/api/image", values);
+
+            const urls = response.data.map((image: { url: string }) => image.url);
+
+            setImages(urls);
+
             form.reset();
+
         } catch (error: any) {
             console.log(error);
         } finally {
             router.refresh();
         }
     };
-
 
     return (
         <div>
@@ -67,7 +72,7 @@ const ImagePage = () => {
                         <FormField
                             name="prompt"
                             render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-10">
+                                    <FormItem className="col-span-12 lg:col-span-6">
                                         <FormControl className="m-0 p-0">
                                             <Input 
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" 
@@ -79,7 +84,7 @@ const ImagePage = () => {
                                     </FormItem>    
                                 )}
                             />
-                            {/* <FormField
+                            <FormField
                                 control={form.control}
                                 name="amount"
                                 render={({ field }) => (
@@ -132,7 +137,7 @@ const ImagePage = () => {
                                         </Select>
                                     </FormItem>
                                 )}
-                            /> */}
+                            />
                             <Button className="col-span-12 lg:col-span-2 w-full" type="submit" disabled={isLoading} size="icon">
                                 Generate
                             </Button>

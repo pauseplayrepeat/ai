@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/riffusion/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/riffusion/route.js", "app/api/sdxl/[id]/[id].japp/api/sdxl/index.jste.js", "app/(dashboard)/(routes)/sdxl/page.jsx"],
   "exclude": ["node_modules"]
 }

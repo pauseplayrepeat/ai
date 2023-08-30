@@ -6,6 +6,8 @@ const nextConfig = {
       "oaidalleapiprodscus.blob.core.windows.net",
       "cdn.openai.com",
       "res.cloudinary.com",
+      "replicate.com",
+      "pbxt.replicate.delivery",
     ],
   },
 };
