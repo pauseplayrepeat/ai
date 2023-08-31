@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from '@/components/ui/toaster';
+import { ProModal } from '@/components/companion/pro-modal';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,11 +19,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <ClerkProvider>
     <html lang="en">
       <body className={inter.className}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ProModal />
             {children}
       </ThemeProvider>
       <Toaster />

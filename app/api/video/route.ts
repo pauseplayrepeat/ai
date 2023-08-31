@@ -33,10 +33,10 @@ export async function POST(
     // }
 
     const response = await replicate.run(
-      "anotherjesse/zeroscope-v2-xl:71996d331e8ede8ef7bd76eba9fae076d31792e4ddf4ad057779b443d6aea62f",
+      "arielreplicate/stable_diffusion_infinite_zoom:a2527c5074fc0cf9fa6015a40d75d080d1ddf7082fabe142f1ccd882c18fce61",
       {
         input: {
-          prompt,
+          prompt: prompt,
         }
       }
     );
