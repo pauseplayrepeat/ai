@@ -54,9 +54,8 @@ const ImagePage = () => {
     return (
         <div>
             <Heading
-                title="Image Generation"
-                description="Generate Images from a prompt.
-                Prompt examples can be found at https://prompthero.com/stable-diffusion-prompts"
+                title="Album Artwork Generation"
+                description="Generate Album Artwork from a prompt."
                 Icon={ImageIcon}
                 iconColor="text-pink-500"
                 bgColor="bg-pink-500/10"

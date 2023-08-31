@@ -52,8 +52,8 @@ const MusicPage = () => {
   return ( 
     <div>
       <Heading
-        title="Music Generation"
-        description="Turn your prompt into music."
+        title="Sample Generation"
+        description="Generate Music Samples from a prompt."
         Icon={Music}
         iconColor="text-emerald-500"
         bgColor="bg-emerald-500/10"
