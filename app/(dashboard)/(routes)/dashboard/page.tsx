@@ -7,43 +7,43 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const tools = [
+    // {
+    //     label: "Conversation",
+    //     icon: MessageSquare,
+    //     href: "/conversation",
+    //     bgColor: "text-violet-500/10",
+    //     color: "text-violet-500",
+    // },
     {
-        label: "Conversation",
-        icon: MessageSquare,
-        href: "/conversation",
-        bgColor: "text-violet-500/10",
-        color: "text-violet-500",
-    },
-    {
-        label: "Image Generation",
+        label: "Album Artwork Generation",
         icon: ImageIcon,
         href: "/image",
         bgColor: "text-pink-500/10",
         color: "text-pink-500",
     },
+    // {
+    //     label: "Video Generation",
+    //     icon: VideoIcon,
+    //     href: "/video",
+    //     bgColor: "text-orange-500/10",
+    //     color: "text-orange-500",
+    // },
     {
-        label: "Video Generation",
-        icon: VideoIcon,
-        href: "/video",
-        bgColor: "text-orange-500/10",
-        color: "text-orange-500",
-    },
-    {
-        label: "Music Generation",
+        label: "Sample Generation",
         icon: Music,
         href: "/music",
         bgColor: "text-emerald-500/10",
         color: "text-emerald-500",
     },
+    // {
+    //     label: "Code Generation",
+    //     icon: Code,
+    //     href: "/code",
+    //     bgColor: "text-green-500/10",
+    //     color: "text-green-500",
+    // },
     {
-        label: "Code Generation",
-        icon: Code,
-        href: "/code",
-        bgColor: "text-green-500/10",
-        color: "text-green-500",
-    },
-    {
-        label: "Companion",
+        label: "Companions",
         icon: HelpingHand,
         href: "/companion",
         bgColor: "text-green-500/10",
