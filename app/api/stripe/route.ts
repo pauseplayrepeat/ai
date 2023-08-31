@@ -4,7 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 
-const settingsUrl = absoluteUrl("/companion/settings");
+const settingsUrl = absoluteUrl("companion/settings");
 
 export async function GET() {
     try {
