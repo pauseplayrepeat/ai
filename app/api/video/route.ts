@@ -35,10 +35,10 @@ export async function POST(
     // }
 
     const response = await replicate.run(
-      "deforum/deforum_stable_diffusion:e22e77495f2fb83c34d5fae2ad8ab63c0a87b6b573b6208e1535b23b89ea66d6",
+      "pollinations/stable-diffusion-dance:dfb636aa9c04fe5b7d9897e6159ef88e3ecb3e1eb274c3f072dca7b495823280",
       {
         input: {
-          max_frames: "100",
+          prompts: prompt
         }
       }
     );
