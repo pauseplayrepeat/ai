@@ -10,7 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 export const SubscriptionButton = ({
   isPro = false
 }: {
-  isPro: boolean;
+  isPro: boolean | undefined;
 }) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
