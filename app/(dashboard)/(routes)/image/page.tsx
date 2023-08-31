@@ -55,7 +55,8 @@ const ImagePage = () => {
         <div>
             <Heading
                 title="Image Generation"
-                description="Generate Images from a prompt."
+                description="Generate Images from a prompt.
+                Prompt examples can be found at https://prompthero.com/stable-diffusion-prompts"
                 Icon={ImageIcon}
                 iconColor="text-pink-500"
                 bgColor="bg-pink-500/10"
@@ -67,7 +68,7 @@ const ImagePage = () => {
                         <FormField
                             name="prompt"
                             render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-10">
+                                    <FormItem className="col-span-12 lg:col-span-8">
                                         <FormControl className="m-0 p-0">
                                             <Input 
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" 
@@ -135,6 +136,9 @@ const ImagePage = () => {
                             /> */}
                             <Button className="col-span-12 lg:col-span-2 w-full" type="submit" disabled={isLoading} size="icon">
                                 Generate
+                            </Button>
+                            <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => window.open('https://prompthero.com/stable-diffusion-prompts', '_blank')}>
+                                View Prompt Examples
                             </Button>
                         </form>
                     </Form>

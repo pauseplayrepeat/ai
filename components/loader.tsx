@@ -11,7 +11,7 @@ export const Loader = () => {
                 />
             </div>
             <p>
-                Genius is thinking...
+                Generating...
             </p>
         </div>
     )
