@@ -22,7 +22,7 @@ const CompanionIdPage = async ({
   const validSubscription = await checkSubscription();
 
   if (!validSubscription) {
-    return redirect("/");
+    return redirect("/companion/settings");
   }
 
   const companion = await prismadb.companion.findUnique({
