@@ -93,7 +93,7 @@ const MusicPage = () => {
             <Button className="col-span-12 lg:col-span-2 w-full" type="submit" disabled={isLoading} size="icon">
               Generate
             </Button>
-            <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => window.open('https://echo.ps.ai/musicgen', '_blank')}>
+            <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => window.open('https://rsxdalv.github.io/musicgen-prompts/', '_blank')}>
               View Prompt Examples
             </Button>
           </form>
