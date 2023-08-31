@@ -7,7 +7,7 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
 });
 
-export const runtime = 'edge'; // Specify the runtime as 'edge'
+// export const runtime = 'edge'; // Specify the runtime as 'edge'
 
 export async function POST(
   req: NextRequest
