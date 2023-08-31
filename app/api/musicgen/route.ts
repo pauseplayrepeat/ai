@@ -31,6 +31,7 @@ export async function POST(
         input: {
           model_version: "melody",
           prompt: prompt,
+          duration: "100"
         }
       }
     );
