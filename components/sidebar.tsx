@@ -27,40 +27,40 @@ const routes = [
         color: "text-violet-500",
     },
     {
-        label: "Image Generation",
+        label: "Album Artwork Generation",
         icon: ImageIcon,
         href: "/image",
         color: "text-pink-500",
     },
+    // {
+    //     label: "Video Generation",
+    //     icon: VideoIcon,
+    //     href: "/video",
+    //     color: "text-orange-500",
+    // },
     {
-        label: "Video Generation",
-        icon: VideoIcon,
-        href: "/video",
-        color: "text-orange-500",
-    },
-    {
-        label: "Music Generation",
+        label: "Sample Generation",
         icon: Music,
         href: "/music",
         color: "text-emerald-500",
     },
+    // {
+    //     label: "Code Generation",
+    //     icon: Code,
+    //     href: "/code",
+    //     color: "text-green-500",
+    // },
     {
-        label: "Code Generation",
-        icon: Code,
-        href: "/code",
-        color: "text-green-500",
-    },
-    {
-        label: "Companion",
+        label: "Companions",
         icon: HelpingHand,
         href: "/companion",
-        bgColor: "text-green-500/10",
-        color: "text-green-500",
+        bgColor: "text-yellow-500/10",
+        color: "text-yellow-500",
     },
     {
         label: "Settings",
         icon: Settings,
-        href: "/settings",
+        href: "/companion/settings",
     },
     
 ];

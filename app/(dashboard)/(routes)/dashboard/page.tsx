@@ -46,8 +46,8 @@ const tools = [
         label: "Companions",
         icon: HelpingHand,
         href: "/companion",
-        bgColor: "text-green-500/10",
-        color: "text-green-500",
+        bgColor: "text-yellow-500/10",
+        color: "text-yellow-500",
     },
 ];
 
