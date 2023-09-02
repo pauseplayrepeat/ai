@@ -12,11 +12,7 @@ export async function GET(
         return new NextResponse("Unauthorized", { status: 401 });
       }
   
-      const prompts = await prismadb.prompt.findMany({
-        where: {
-          userId: userId,
-        }
-      })
+      const prompts = await prismadb.prompt.findMany(); 
   
       return NextResponse.json(prompts);
     } catch (error) {
