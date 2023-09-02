@@ -12,13 +12,18 @@ import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
+interface Prompt {
+  prompt: string;
+  // include other properties of prompt if there are any
+}
+
 export default function PromptPage() {
-  const [prompts, setPrompts] = useState([]);
-  const [error, setError] = useState(null);
+  const [prompts, setPrompts] = useState<Prompt[]>([]);
+  const [error, setError] = useState("");
 
   const { toast } = useToast();
 
-  const onCopy = (text) => {
+  const onCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({
       description: "Prompt copied to clipboard.",
@@ -35,7 +40,7 @@ export default function PromptPage() {
         }
         setPrompts(response.data);
       } catch (error) {
-        setError(error.message);
+        setError((error as Error).message);
       }
     };
 
@@ -58,20 +63,21 @@ export default function PromptPage() {
       <div className="px-4 lg:px-8">
         <div className="space-y-4 mt-4">
           {prompts.length === 0 && <Empty label="No prompts available." />}
-          <div className="grid grid-cols-1 mid:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+          <div className="grid auto-rows-min grid-cols-1 mid:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
             {prompts.map((prompt, index) => (
-              <Card key={index} className="rounded-lg overflow-hidden">
+              <Card key={index} className="rounded-lg p-4">
                 {/* <div className="relative aspect-square">
                   <Image alt="Prompt" fill src={prompt.imageSrc} />
                 </div> */}
-                <CardFooter className="p-2">
-                  <div>{prompt.prompt}</div>
+                <CardFooter className="flex flex-col justify-between items-center space-y-4"> 
+                  <div className="px-2 py-1">{prompt.prompt}</div> 
                   <Button
                     onClick={() => onCopy(prompt.prompt)}
-                    className=""
+                    className="w-full"
                     size="icon"
-                    variant="primary"
+                    variant="default"
                   >
+                    Copy Prompt   
                     <Copy className="w-4 h-4" />
                   </Button>
                 </CardFooter>
