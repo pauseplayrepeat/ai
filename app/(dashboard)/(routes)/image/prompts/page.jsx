@@ -49,8 +49,8 @@ export default function PromptPage() {
   return (
     <div>
       <Heading
-        title="Prompts"
-        description="List of prompts."
+        title="Album Artwork Prompts"
+        description="List of Album Artwork prompts."
         Icon={ImageIcon}
         iconColor="text-pink-500"
         bgColor="bg-pink-500/10"

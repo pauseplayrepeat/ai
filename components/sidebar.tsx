@@ -20,12 +20,12 @@ const routes = [
         href: "/dashboard",
         color: "text-sky-500",
     },
-    {
-        label: "Conversation",
-        icon: MessageSquare,
-        href: "/conversation",
-        color: "text-violet-500",
-    },
+    // {
+    //     label: "Conversation",
+    //     icon: MessageSquare,
+    //     href: "/conversation",
+    //     color: "text-violet-500",
+    // },
     {
         label: "Album Artwork Generation",
         icon: ImageIcon,
@@ -42,7 +42,7 @@ const routes = [
         label: "Sample Generation",
         icon: Music,
         href: "/music",
-        color: "text-emerald-500",
+        color: "text-blue-500",
     },
     // {
     //     label: "Code Generation",
@@ -54,8 +54,8 @@ const routes = [
         label: "Companions",
         icon: HelpingHand,
         href: "/companion",
-        bgColor: "text-yellow-500/10",
-        color: "text-yellow-500",
+        bgColor: "text-grey-500/10",
+        color: "text-grey-500",
     },
     {
         label: "Settings",
