@@ -21,7 +21,7 @@ export default function PromptPage() {
   const onCopy = (text) => {
     navigator.clipboard.writeText(text);
     toast({
-      description: "Message copied to clipboard.",
+      description: "Prompt copied to clipboard.",
       duration: 3000,
     });
   };
