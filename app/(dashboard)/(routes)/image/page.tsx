@@ -137,8 +137,8 @@ const ImagePage = () => {
                                 Generate
                             </Button>
                             <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => router.push('/image/prompts')}>
-    View Prompt Examples
-</Button>
+                                View Prompts
+                            </Button>
                         </form>
                     </Form>
                 </div>

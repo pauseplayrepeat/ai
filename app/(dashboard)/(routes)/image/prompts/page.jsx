@@ -8,10 +8,23 @@ import { Loader } from "@/components/loader";
 import Empty from "@/components/empty";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Copy } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function PromptPage() {
   const [prompts, setPrompts] = useState([]);
   const [error, setError] = useState(null);
+
+  const { toast } = useToast();
+
+  const onCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    toast({
+      description: "Message copied to clipboard.",
+      duration: 3000,
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +66,14 @@ export default function PromptPage() {
                 </div> */}
                 <CardFooter className="p-2">
                   <div>{prompt.prompt}</div>
+                  <Button
+                    onClick={() => onCopy(prompt.prompt)}
+                    className=""
+                    size="icon"
+                    variant="primary"
+                  >
+                    <Copy className="w-4 h-4" />
+                  </Button>
                 </CardFooter>
               </Card>
             ))}
