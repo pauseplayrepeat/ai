@@ -1,6 +1,7 @@
 import Replicate from "replicate";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import prismadb from "@/lib/prismadb";
 
 // import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 // import { checkSubscription } from "@/lib/subscription";
@@ -41,6 +42,13 @@ export async function POST(
       }
     );
 
+    const savePrompt = await prismadb.prompt.create({
+      data: {
+        prompt: prompt,
+        userId: userId,
+      }
+    })
+
     // if (!isPro) {
     //   await incrementApiLimit();
     // }
@@ -49,5 +57,7 @@ export async function POST(
   } catch (error) {
     console.log('[MUSIC_ERROR]', error);
     return new NextResponse("Internal Error", { status: 500 });
+    
   }
+  
 };

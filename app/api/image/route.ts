@@ -1,6 +1,7 @@
 import { Configuration, OpenAIApi } from "openai"
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs"
+import prismadb from "@/lib/prismadb"
 
 // export const runtime = 'edge'; 
 
@@ -43,6 +44,20 @@ export async function POST(
             n: parseInt(amount, 10),
             size: resolution,
         });
+
+        try {
+            const createdPrompt = await prismadb.prompt.create({
+                data: {
+                    userId: userId,
+                    prompt: prompt,
+                    result: JSON.stringify(response.data.data), // assuming the result is an object
+                },
+            });
+        
+            console.log(createdPrompt);
+        } catch (error) {
+            console.error("Error creating prompt:", error);
+        }
 
         return NextResponse.json(response.data.data);
 
