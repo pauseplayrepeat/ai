@@ -42,18 +42,20 @@ export async function POST(
       }
     );
 
-    const savePrompt = await prismadb.prompt.create({
-      data: {
-        prompt: prompt,
-        userId: userId,
-      }
-    })
 
     // if (!isPro) {
     //   await incrementApiLimit();
     // }
 
+    const savePrompt = await prismadb.prompt.create({
+      data: {
+        prompt: prompt,
+        userId: userId,
+      }
+    });
+
     return NextResponse.json(response);
+
   } catch (error) {
     console.log('[MUSIC_ERROR]', error);
     return new NextResponse("Internal Error", { status: 500 });

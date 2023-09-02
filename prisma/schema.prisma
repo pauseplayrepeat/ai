@@ -69,7 +69,8 @@ model UserSubscription {
 model Prompt {
   id        Int      @id @default(autoincrement())
   userId    String?
-  prompt    String?
+  prompt    String   @db.LongText
   result    String?
+  image     String?
   createdAt DateTime @default(now())
 }
