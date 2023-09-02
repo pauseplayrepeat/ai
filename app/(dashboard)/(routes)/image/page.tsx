@@ -136,9 +136,9 @@ const ImagePage = () => {
                             <Button className="col-span-12 lg:col-span-2 w-full" type="submit" disabled={isLoading} size="icon">
                                 Generate
                             </Button>
-                            <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => window.open('https://prompthero.com/stable-diffusion-prompts', '_blank')}>
-                                View Prompt Examples
-                            </Button>
+                            <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => router.push('/image/prompts')}>
+    View Prompt Examples
+</Button>
                         </form>
                     </Form>
                 </div>
