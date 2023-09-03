@@ -148,8 +148,8 @@ const MusicPage = () => {
     <SelectValue placeholder="Select an API route" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="/api/riffusion">Riffusion</SelectItem>
-    <SelectItem value="/api/musicgen">MusicGen</SelectItem>
+    <SelectItem value="/api/riffusion">Riffusion - Generates images of spectrograms converted to audio clips from a text prompt.</SelectItem>
+    <SelectItem value="/api/musicgen">MusicGen - Generates music using 4 sets of codes analyzed 50 times per second from a 32kHz EnCodec tokenizer.</SelectItem>
   </SelectContent>
 </Select>
                     </div>
