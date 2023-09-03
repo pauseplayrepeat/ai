@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/riffusion/route.js", "app/api/sdxl/[id]/[id].japp/api/sdxl/index.jste.js", "app/(dashboard)/(routes)/sdxl/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/riffusion/route.js", "app/api/sdxl/[id]/[id].japp/api/sdxl/index.jste.js", "app/(dashboard)/(routes)/sdxl/page.tsx", "app/(dashboard)/(routes)/image/prompts/page.jsx", "app/(dashboard)/(routes)/sdxl/prompts/page.jsx"],
   "exclude": ["node_modules"]
 }
