@@ -3,7 +3,7 @@
 import { useState } from "react";
 // import { PageLayout } from "@/components/Layouts";
 // import { NamespaceSelector } from "@/components/NamespaceInput";
-import { DocumentQA } from "@/components/embed/DocumentQA";
+// import { DocumentQA } from "@/components/embed/DocumentQA";
 
 export default function Query() {
   const [namespace, setNamespace] = useState("");
@@ -28,7 +28,7 @@ export default function Query() {
             <p className="mb-3 mt-2 max-w-lg text-center text-neutral-800 dark:text-neutral-200 md:text-lg">
               Ask a question.
             </p>
-            <DocumentQA namespace={namespace} />
+            {/* <DocumentQA namespace={namespace} /> */}
           </div>
         </div>
       </div>
