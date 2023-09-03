@@ -30,7 +30,6 @@ export async function POST(
         {
           input: {
             prompt_a: prompt,
-            num_inference_steps: duration,
           }
         }
       );
