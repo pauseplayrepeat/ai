@@ -38,14 +38,17 @@ const MusicPage = () => {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
 			setMusic(undefined);
-			const response = await axios.post(values.apiRoute, values);
+			const requestBody = values.apiRoute === "/api/riffusion" 
+				? { ...values, seed_image_id: values.seed_image_id } 
+				: values;
+			const response = await axios.post(values.apiRoute, requestBody);
 			if (values.apiRoute === "/api/riffusion") {
-				setMusic(response.data.audio); // For /api/riffusion, use response.data.audio
+				setMusic(response.data.audio);
 			} else {
-				setMusic(response.data); // For other routes, use response.data
+				setMusic(response.data);
 			}
 		} catch (error: any) {
 			// handle error
@@ -138,6 +141,43 @@ const MusicPage = () => {
                 </FormItem>
               )}
             /> */}
+						{selectedApiRoute === "/api/riffusion" && (
+  <FormField
+    control={form.control}
+    name="seed_image_id"
+    render={({ field }) => (
+      <FormItem className="col-span-12 lg:col-span-12">
+        <div className="w-full h-auto py-2">
+          <div className="text-l font-bold">Seed Image ID</div>
+          <div className="py-2">
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a seed image ID" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="agile">agile</SelectItem>
+                <SelectItem value="marim">marim</SelectItem>
+                <SelectItem value="mask_beat_lines_80">mask_beat_lines_80</SelectItem>
+                <SelectItem value="mask_gradient_dark">mask_gradient_dark</SelectItem>
+                <SelectItem value="mask_gradient_top_70">mask_gradient_top_70</SelectItem>
+                <SelectItem value="mask_gradient_top_fifth_75">mask_gradient_top_fifth_75</SelectItem>
+                <SelectItem value="mask_gradient_top_75">mask_gradient_top_75</SelectItem>
+                <SelectItem value="mask_top_third_95">mask_top_third_95</SelectItem>
+                <SelectItem value="motorway">motorway</SelectItem>
+                <SelectItem value="og_beat">og_beat</SelectItem>
+                <SelectItem value="vibes">vibes</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <FormDescription className="w-full whitespace-nowrap">
+            Select the seed image ID for Riffusion.
+          </FormDescription>
+          <FormMessage />
+        </div>
+      </FormItem>
+    )}
+  />
+)}
             {selectedApiRoute !== "/api/riffusion" && (
               <FormField
                 name="duration"
