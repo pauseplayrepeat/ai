@@ -4,9 +4,9 @@ export const formSchema = z.object({
     prompt: z.string().min(1, {
         message: "Prompt is required"
     }),
-    notLike: z.string().min(1, {
-        message: "Prompt is required"
-    }),
+    // notLike: z.string().min(1, {
+    //     message: "Prompt is required"
+    // }),
     duration: z.number().min(1, {
         message: "Duration must be at least 1 second"
     }).max(30, {

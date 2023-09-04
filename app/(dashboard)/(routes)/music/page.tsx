@@ -28,7 +28,7 @@ const MusicPage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
-			notLike: "",
+			// notLike: "",
       duration: 5,
       apiRoute: "/api/riffusion", // default API route
     },
@@ -42,8 +42,11 @@ const MusicPage = () => {
 		try {
 			setMusic(undefined);
 			const response = await axios.post(values.apiRoute, values);
-			setMusic(response.data);
-			form.reset();
+			if (values.apiRoute === "/api/riffusion") {
+				setMusic(response.data.audio); // For /api/riffusion, use response.data.audio
+			} else {
+				setMusic(response.data); // For other routes, use response.data
+			}
 		} catch (error: any) {
 			// handle error
 		} finally {
