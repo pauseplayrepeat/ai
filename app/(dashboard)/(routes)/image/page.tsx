@@ -180,27 +180,29 @@ const ImagePage = () => {
                         <Empty label="No images generated."/>
                     )}
                     <div className="grid grid-cols-1 mid:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-                        {images.map((src) => (
-                            <Card
-                                key={src}
-                                className="rounded-lg overflow-hidden"
-                            >
-                                <div className="relative aspect-square">
-                                    <Image 
-                                        alt="Image"
-                                        fill
-                                        src={src}
-                                    />
-                                </div> 
-                                <CardFooter className="p-2">
-                                    <Button variant="secondary" className="w-full" onClick={() => window.open(src)}>
-                                        <Download className="h-4 w-4 mr-2">
-                                            Download
-                                        </Download>
-                                    </Button>
-                                </CardFooter>
-                            </Card>
-                        ))}
+                    {images.map((src) => (
+    <div className="pb-4"> {/* Add padding-bottom class here */}
+        <Card
+            key={src}
+            className="rounded-lg overflow-hidden" 
+        >
+            <div className="relative aspect-square">
+                <Image 
+                    alt="Image"
+                    fill
+                    src={src}
+                />
+            </div> 
+            <CardFooter className="p-2">
+                <Button variant="secondary" className="w-full" onClick={() => window.open(src)}>
+                    <Download className="h-4 w-4 mr-2">
+                        Download
+                    </Download>
+                </Button>
+            </CardFooter>
+        </Card>
+    </div>
+))}
                     </div>
             </div>
         </div>
