@@ -16,4 +16,5 @@ export const formSchema = z.object({
     seed_image_id: z.string().optional(),
     alpha: z.number().default(0.5),
     denoise: z.number().default(0.75),
+    num_inference_steps: z.number().default(50),
 })

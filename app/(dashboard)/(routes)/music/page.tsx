@@ -32,6 +32,7 @@ const MusicPage = () => {
       duration: 5,
 			alpha: 0.5,
 			denoise: 0.75,
+			num_inference_steps: 50,
       apiRoute: "/api/riffusion", // default API route
     },
   });
@@ -264,6 +265,28 @@ const MusicPage = () => {
         </FormControl>
         <FormDescription className="w-full whitespace-nowrap">
           How much to transform input spectrogram.
+        </FormDescription>
+      </FormItem>
+    )}
+  />
+)}
+{selectedApiRoute === "/api/riffusion" && (
+  <FormField
+    name="num_inference_steps"
+    render={({ field }) => (
+      <FormItem className="col-span-12 lg:col-span-12">
+        <div className="text-l font-bold">Number of Inference Steps</div>
+        <FormControl className="m-0 p-0">
+          <Slider 
+            defaultValue={[field.value]} 
+            max={100} 
+            min={1} 
+            step={1} 
+            onValueChange={(values) => field.onChange(values[0])}
+          />
+        </FormControl>
+        <FormDescription className="w-full whitespace-nowrap">
+          Number of steps to run the diffusion model.
         </FormDescription>
       </FormItem>
     )}
