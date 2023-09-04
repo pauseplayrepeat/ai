@@ -83,6 +83,32 @@ const MusicPage = () => {
               gap-2
             "
           >
+						<FormField
+              control={form.control}
+              name="apiRoute"
+              render={({ field }) => (
+                <FormItem className="col-span-12 lg:col-span-12">
+                  <div className="w-full h-auto py-2">
+                    <div className="text-l font-bold">Model</div>
+                    <div className="py-2">
+										<Select onValueChange={field.onChange} defaultValue={field.value}>
+  <SelectTrigger>
+    <SelectValue placeholder="Select an API route" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="/api/riffusion">Riffusion - Generates images of spectrograms converted to audio clips from a text prompt.</SelectItem>
+    <SelectItem value="/api/musicgen">MusicGen - Generates music using 4 sets of codes analyzed 50 times per second from a 32kHz EnCodec tokenizer.</SelectItem>
+  </SelectContent>
+</Select>
+                    </div>
+                    <FormDescription className="w-full whitespace-nowrap">
+                      Select the model to use for music generation.
+                    </FormDescription>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
             <FormField
               name="prompt"
               render={({ field }) => (
@@ -197,32 +223,6 @@ const MusicPage = () => {
                 )}
               />
             )}
-            <FormField
-              control={form.control}
-              name="apiRoute"
-              render={({ field }) => (
-                <FormItem className="col-span-12 lg:col-span-12">
-                  <div className="w-full h-auto py-2">
-                    <div className="text-l font-bold">Model</div>
-                    <div className="py-2">
-										<Select onValueChange={field.onChange} defaultValue={field.value}>
-  <SelectTrigger>
-    <SelectValue placeholder="Select an API route" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="/api/riffusion">Riffusion - Generates images of spectrograms converted to audio clips from a text prompt.</SelectItem>
-    <SelectItem value="/api/musicgen">MusicGen - Generates music using 4 sets of codes analyzed 50 times per second from a 32kHz EnCodec tokenizer.</SelectItem>
-  </SelectContent>
-</Select>
-                    </div>
-                    <FormDescription className="w-full whitespace-nowrap">
-                      Select the model to use for music generation.
-                    </FormDescription>
-                    <FormMessage />
-                  </div>
-                </FormItem>
-              )}
-            />
             <Button className="col-span-12 w-full" type="submit" disabled={isLoading} size="icon">
               Generate
             </Button>
