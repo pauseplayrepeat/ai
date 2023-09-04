@@ -15,7 +15,7 @@ export async function POST(
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { prompt, duration  } = body;
+    const { prompt, duration, notLike  } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -30,6 +30,7 @@ export async function POST(
         {
           input: {
             prompt_a: prompt,
+            prompt_b: notLike,
           }
         }
       );

@@ -28,6 +28,7 @@ const MusicPage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
+			notLike: "",
       duration: 5,
       apiRoute: "/api/riffusion", // default API route
     },
@@ -92,6 +93,24 @@ const MusicPage = () => {
                 </FormItem>
               )}
             />
+						{selectedApiRoute === "/api/riffusion" && (
+  <FormField
+    name="notLike"
+    render={({ field }) => (
+      <FormItem className="col-span-12 lg:col-span-12">
+        <div className="text-l font-bold">What you don't want in your sound</div>
+        <FormControl className="m-0 p-0">
+          <Input
+            className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+            disabled={isLoading} 
+            placeholder="No heavy metal" 
+            {...field}
+          />
+        </FormControl>
+      </FormItem>
+    )}
+  />
+)}
             {/* <FormField
               name="file"
               render={({ field }) => (
