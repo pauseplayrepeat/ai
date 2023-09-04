@@ -26,12 +26,19 @@ const ImagePage = () => {
     const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
 
+    const amountOptions = [
+        { value: "1", label: "1" },
+        { value: "2", label: "2" },
+        { value: "3", label: "3" },
+        { value: "4", label: "4" },
+      ];
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             prompt: "",
+            negativePrompt: "",
             amount: "1",
-            resolution: "512x512",
         },
     });
 
@@ -40,7 +47,10 @@ const ImagePage = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             setImages([]);
-            const response = await axios.post("/api/sd", values);
+            const response = await axios.post("/api/sd", {
+                ...values,
+                amount: parseInt(values.amount),
+            });
             setImages(response.data);
             form.reset();
         } catch (error: any) {
@@ -65,48 +75,66 @@ const ImagePage = () => {
                     <Form {...form}>
                         <form className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2" onSubmit={form.handleSubmit(onSubmit)}>
                         <FormField
-                            name="prompt"
-                            render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-8">
-                                        <FormControl className="m-0 p-0">
-                                            <Input 
-                                                className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" 
-                                                disabled={isLoading}
-                                                placeholder="A picture of a horse in the Swiss alps."
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                    </FormItem>    
-                                )}
-                            />
+    name="prompt"
+    render={({ field }) => (
+        <FormItem className="col-span-12 lg:col-span-12">
+            <div className="text-l font-bold">Describe your image</div>
+            <FormControl className="m-0 p-0">
+                <Input 
+                    className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" 
+                    disabled={isLoading}
+                    placeholder="A picture of a horse in the Swiss alps."
+                    {...field}
+                />
+            </FormControl>
+        </FormItem>    
+    )}
+/>
+<FormField
+    name="negativePrompt"
+    render={({ field }) => (
+        <FormItem className="col-span-12 lg:col-span-12">
+            <div className="text-l font-bold">What you don't want in your image</div>
+            <FormControl className="m-0 p-0">
+                <Input 
+                    className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" 
+                    disabled={isLoading}
+                    placeholder="Not a picture of a horse in the Swiss alps."
+                    {...field}
+                />
+            </FormControl>
+        </FormItem>    
+    )}
+/>
+<FormField
+  control={form.control}
+  name="amount"
+  render={({ field }) => (
+    <FormItem className="col-span-12">
+    <div className="text-l font-bold">How many images do you want to generate?</div>
+      <Select
+        disabled={isLoading}
+        onValueChange={field.onChange}
+        value={field.value}
+        defaultValue={field.value}
+      >
+        <FormControl>
+          <SelectTrigger>
+            <SelectValue defaultValue={field.value} />
+          </SelectTrigger>
+        </FormControl>
+        <SelectContent>
+          {amountOptions.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </FormItem>
+  )}
+/>
                             {/* <FormField
-                                control={form.control}
-                                name="amount"
-                                render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-2">
-                                        <Select
-                                            disabled={isLoading}
-                                            onValueChange={field.onChange}
-                                            value={field.value}
-                                            defaultValue={field.value}
-                                        >
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue defaultValue={field.value} />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                {amountOptions.map((option) => (
-                                                    <SelectItem key={option.value} value={option.value}>
-                                                        {option.label}
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
                                 control={form.control}
                                 name="resolution"
                                 render={({ field }) => (
@@ -133,12 +161,12 @@ const ImagePage = () => {
                                     </FormItem>
                                 )}
                             /> */}
-                            <Button className="col-span-12 lg:col-span-2 w-full" type="submit" disabled={isLoading} size="icon">
-                                Generate
-                            </Button>
-                            <Button className="col-span-12 lg:col-span-2 w-full" variant="link" onClick={() => router.push('/image/prompts')}>
-                                View Prompts
-                            </Button>
+                            <Button className="col-span-12 w-full" type="submit" disabled={isLoading} size="icon">
+    Generate
+</Button>
+<Button className="col-span-12 w-full" variant="link" onClick={() => router.push('/image/prompts')}>
+    View Prompts
+</Button>
                         </form>
                     </Form>
                 </div>

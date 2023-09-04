@@ -5,7 +5,10 @@ export const formSchema = z.object({
         message: "Image Prompt is required"
     }),
     amount: z.string().min(1),
-    resolution: z.string().min(1),
+    // resolution: z.string().min(1),
+    negativePrompt: z.string().min(1, {
+        message: "Negative Prompt is required"
+    }),
 });
 
 // export const amountOptions = [

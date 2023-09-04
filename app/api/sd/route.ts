@@ -10,13 +10,11 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
 });
 
-export async function POST(
-  req: Request
-) {
+export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { prompt  } = body;
+    const { prompt, amount, negativePrompt } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -26,11 +24,13 @@ export async function POST(
       return new NextResponse("Prompt is required", { status: 400 });
     }
 
-    // const freeTrial = await checkApiLimit();
-    // const isPro = await checkSubscription();
+    // Handle the new fields
+    // if (!amount) {
+    //   return new NextResponse("Amount is required", { status: 400 });
+    // }
 
-    // if (!freeTrial && !isPro) {
-    //   return new NextResponse("Free trial has expired. Please upgrade to pro.", { status: 403 });
+    // if (!negativePrompt) {
+    //   return new NextResponse("Negative prompt is required", { status: 400 });
     // }
 
     const response = await replicate.run(
@@ -38,18 +38,17 @@ export async function POST(
       {
         input: {
           prompt: prompt,
+          num_outputs: amount,
+          negative_prompt: negativePrompt,
         }
       }
     );
 
-
-    // if (!isPro) {
-    //   await incrementApiLimit();
-    // }
-
-    const savePrompt = await prismadb.prompt.create({
+    await prismadb.prompt.create({
       data: {
         prompt: prompt,
+        // num_outputs: amount,
+        // negativePrompt: negativePrompt,
         userId: userId,
       }
     });
@@ -59,7 +58,5 @@ export async function POST(
   } catch (error) {
     console.log('[MUSIC_ERROR]', error);
     return new NextResponse("Internal Error", { status: 500 });
-    
   }
-  
 };
