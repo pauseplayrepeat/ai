@@ -14,4 +14,6 @@ export const formSchema = z.object({
     }),
     apiRoute: z.string(),
     seed_image_id: z.string().optional(),
+    alpha: z.number().default(0.5),
+    denoise: z.number().default(0.75),
 })

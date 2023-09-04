@@ -28,8 +28,10 @@ const MusicPage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
-			// notLike: "",
+			notLike: "",
       duration: 5,
+			alpha: 0.5,
+			denoise: 0.75,
       apiRoute: "/api/riffusion", // default API route
     },
   });
@@ -223,6 +225,50 @@ const MusicPage = () => {
                 )}
               />
             )}
+						{selectedApiRoute === "/api/riffusion" && (
+  <FormField
+    name="alpha"
+    render={({ field }) => (
+      <FormItem className="col-span-12 lg:col-span-12">
+        <div className="text-l font-bold">Interpolation Alpha</div>
+        <FormControl className="m-0 p-0">
+          <Slider 
+            defaultValue={[field.value]} 
+            max={1} 
+            min={0} 
+            step={0.1} 
+            onValueChange={(values) => field.onChange(values[0])}
+          />
+        </FormControl>
+        <FormDescription className="w-full whitespace-nowrap">
+          Interpolation alpha if using two prompts. A value of 0 uses prompt_a fully, a value of 1 uses prompt_b fully.
+        </FormDescription>
+      </FormItem>
+    )}
+  />
+)}
+{selectedApiRoute === "/api/riffusion" && (
+  <FormField
+    name="denoise"
+    render={({ field }) => (
+      <FormItem className="col-span-12 lg:col-span-12">
+        <div className="text-l font-bold">Denoising Number</div>
+        <FormControl className="m-0 p-0">
+          <Slider 
+            defaultValue={[field.value]} 
+            max={1} 
+            min={0} 
+            step={0.1} 
+            onValueChange={(values) => field.onChange(values[0])}
+          />
+        </FormControl>
+        <FormDescription className="w-full whitespace-nowrap">
+          How much to transform input spectrogram.
+        </FormDescription>
+      </FormItem>
+    )}
+  />
+)}
             <Button className="col-span-12 w-full" type="submit" disabled={isLoading} size="icon">
               Generate
             </Button>
