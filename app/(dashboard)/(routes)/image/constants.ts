@@ -6,9 +6,7 @@ export const formSchema = z.object({
     }),
     amount: z.string().min(1),
     // resolution: z.string().min(1),
-    negativePrompt: z.string().min(1, {
-        message: "Negative Prompt is required"
-    }),
+    negativePrompt: z.string().min(1).optional(),
 });
 
 // export const amountOptions = [
